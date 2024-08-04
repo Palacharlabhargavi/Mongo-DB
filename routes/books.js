@@ -99,30 +99,31 @@ router.get("/issued/by-user", getAllIssuedBooks);
  * Parameters: None
  * Data : id, name, genre, price, publisher, author
  */
-router.post("/", (req, res) => {
-  const { data } = req.body;
+router.post("/", addNewBook);
+// router.post("/", (req, res) => {
+//   const { data } = req.body;
 
-  if (!data) {
-    return res.status(400).json({
-      sucess: false,
-      message: "No Data To Add A Book",
-    });
-  }
+//   if (!data) {
+//     return res.status(400).json({
+//       sucess: false,
+//       message: "No Data To Add A Book",
+//     });
+//   }
 
-  const book = books.find((each) => each.id === data.id);
-  if (book) {
-    return res.status(404).json({
-      success: false,
-      message: "Id Already Exists !!",
-    });
-  }
-  const allBooks = { ...books, data };
-  return res.status(201).json({
-    success: true,
-    message: "Added Book Succesfully",
-    data: allBooks,
-  });
-});
+//   const book = books.find((each) => each.id === data.id);
+//   if (book) {
+//     return res.status(404).json({
+//       success: false,
+//       message: "Id Already Exists !!",
+//     });
+//   }
+//   const allBooks = { ...books, data };
+//   return res.status(201).json({
+//     success: true,
+//     message: "Added Book Succesfully",
+//     data: allBooks,
+//   });
+// });
 
 /**
  * Route: /:id
@@ -132,32 +133,34 @@ router.post("/", (req, res) => {
  * Parameters: Id
  * Data : id, name, genre, price, publisher, author
  */
-router.put("/:id", (req, res) => {
-  const { id } = req.params;
-  const { data } = req.body;
+router.put("/:id", updateBookById);
+// router.put("/:id", (req, res) => {
+//   const { id } = req.params;
+//   const { data } = req.body;
 
-  const book = users.find((each) => each.id === id);
-  if (!book) {
-    return res.status(404).json({
-      success: false,
-      message: "Bool Doesn't Exist !!",
-    });
-  }
-  const updateBookData = users.map((each) => {
-    if (each.id === id) {
-      return {
-        ...each,
-        ...data,
-      };
-    }
-    return each;
-  });
-  return res.status(200).json({
-    success: true,
-    message: "Book Updated !!",
-    data: updateBookData,
-  });
-});
+//   const book = users.find((each) => each.id === id);
+//   if (!book) {
+//     return res.status(404).json({
+//       success: false,
+//       message: "Bool Doesn't Exist !!",
+//     });
+//   }
+//   const updateBookData = users.map((each) => {
+//     if (each.id === id) {
+//       return {
+//         ...each,
+//         ...data,
+//       };
+//     }
+//     return each;
+//   });
+//   return res.status(200).json({
+//     success: true,
+//     message: "Book Updated !!",
+//     data: updateBookData,
+//   });
+// });
+
 //router.put("/updateBook/:id", (req, res) => {
 //   const { id } = req.params;
 //   const { data } = req.body;

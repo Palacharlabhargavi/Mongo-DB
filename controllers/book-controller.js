@@ -1,4 +1,5 @@
 const { UserModel, BookModel } = require("../models");
+const IssuedBook = require("../dtos/book-dto.js");
 
 const getAllBooks = async (req, res) => {
   const books = await BookModel.find();
@@ -71,4 +72,53 @@ const getAllIssuedBooks = async (req, res) => {
     data: issuedBooks,
   });
 };
-module.exports = { getAllBooks, getSingleBookById, getAllIssuedBooks };
+
+const addNewBook = async (req, res) => {
+  const { data } = req.body;
+
+  if (!data) {
+    return res.status(400).json({
+      sucess: false,
+      message: "No Data To Add A Book",
+    });
+  }
+  await BookModel.create(data);
+  const allBooks = await BookModel.find();
+
+  return res.status(201).json({
+    success: true,
+    message: "Added Book Succesfully",
+    data: allBooks,
+  });
+};
+
+const updateBookById = async (req, res) => {
+  const { id } = req.params;
+  const { data } = req.body;
+
+  // name="rk"
+  // updated ="kr"
+  const updatedBook = await BookModel.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    data,
+    {
+      new: true,
+    }
+  );
+  return res.status(200).json({
+    success: true,
+    message: "Updated a Book By Their Id",
+    data: updatedBook,
+  });
+};
+module.exports = {
+  getAllBooks,
+  getSingleBookById,
+  getAllIssuedBooks,
+  addNewBook,
+  updateBookById,
+};
+
+//this code is similler to routes=> books.js but small changes are made , in this we are connecting to database
