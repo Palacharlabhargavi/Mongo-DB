@@ -1,0 +1,28 @@
+{
+  "name": "mongodb",
+  "version": "1.0.0",
+  "description": "serv",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Palacharlabhargavi/Mongo-DB.git"
+  },
+  "author": "bhargavi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Palacharlabhargavi/Mongo-DB/issues"
+  },
+  "homepage": "https://github.com/Palacharlabhargavi/Mongo-DB#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.2",
+    "node": "^20.16.0",
+    "nodemon": "^3.1.4"
+  }
+}
